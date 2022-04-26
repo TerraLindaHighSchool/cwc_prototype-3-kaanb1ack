@@ -34,12 +34,11 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !gameOver)
         {
+            
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
             playerAnim.SetTrigger("Jump_Trig");
             dirtParticle.Stop();
-
-            playerAudio.PlayOneShot(jumpSound, 1.0f);
         }
     }
 
@@ -52,7 +51,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
-            gameOver = true;
+            
             Debug.Log("Game Over!");
 
             playerAnim.SetBool("Death_b", true);
@@ -60,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
             explosionParticle.Play();
             dirtParticle.Stop();
-
+            gameOver = true;
             playerAudio.PlayOneShot(crashSound, 1.0f);
 
         }
